@@ -259,8 +259,8 @@
         <div class="container header-content">
             <h2>أذكار المسلم</h2>
             <nav>
-                <button class="nav-btn" onclick="document.getElementById('morning-section').scrollIntoView({behavior: 'smooth'})">أذكار الصباح</button>
-                <button class="nav-btn" onclick="document.getElementById('evening-section').scrollIntoView({behavior: 'smooth'})">أذكار المساء</button>
+                <button class="nav-btn" onclick="document.getElementById('mor').scrollIntoView({behavior: 'smooth'})">أذكار الصباح</button>
+                <button class="nav-btn" onclick="document.getElementById('eve').scrollIntoView({behavior: 'smooth'})">أذكار المساء</button>
             </nav>
         </div>
     </header>
@@ -269,14 +269,14 @@
         
         <section id="morning-section">
             <div class="section-header">
-                <h3>أذكار الصباح</h3>
+                <h3 id="mor">أذكار الصباح</h3>
             </div>
             <div id="morning" class="grid"></div>
         </section>
 
         <section id="evening-section">
             <div class="section-header">
-                <h3>أذكار المساء</h3>
+                <h3 id="eve">أذكار المساء</h3>
             </div>
             <div id="evening" class="grid"></div>
         </section>
