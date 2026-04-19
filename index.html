@@ -3,171 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أذكار الصباح والمساء</title>
+
+<title>أذكار المسلم</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary-dark: #1b3022;
-    --accent-gold: #c5a059;
-    --bg-beige: #f9f7f2;
-    --text-main: #333;
-    --white: #ffffff;
-}
-
-* {margin:0;padding:0;box-sizing:border-box;}
-
-body {
-    background-color: var(--bg-beige);
-    font-family: 'Cairo', sans-serif;
-    color: var(--text-main);
-    line-height: 1.8;
-}
-
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
-}
-
-/* Header */
-header {
-    background: var(--primary-dark);
-    color: var(--accent-gold);
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-family: 'Amiri';
-    font-size: 1.8rem;
-}
-
-.nav-btn {
-    background: transparent;
-    border: 1px solid var(--accent-gold);
-    color: var(--accent-gold);
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.nav-btn:hover {
-    background: var(--accent-gold);
-    color: var(--primary-dark);
-}
-
-/* Hero */
-.hero {
-    height: 300px;
-    position: relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    text-align:center;
-}
-
-.hero img {
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0.3;
-}
-
-.hero h2 {
-    position:relative;
-    font-family:'Amiri';
-    font-size:2.5rem;
-}
-
-/* Sections */
-.dhikr-section {
-    margin: 50px 0;
-}
-
-.section-title {
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.section-title h3 {
-    font-family:'Amiri';
-    font-size:2rem;
-}
-
-/* Cards */
-.dhikr-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-}
-
-.dhikr-card {
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    border-bottom:4px solid var(--accent-gold);
-    box-shadow:0 4px 10px rgba(0,0,0,0.05);
-    transition:0.3s;
-}
-
-.dhikr-card:hover {
-    transform:translateY(-5px);
-}
-
-.dhikr-text {
-    font-size:1.2rem;
-    margin-bottom:15px;
-}
-
-.card-footer {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.count-btn {
-    background: var(--primary-dark);
-    color:white;
-    border:none;
-    padding:5px 10px;
-    cursor:pointer;
-}
-
-/* Footer */
-footer {
-    background: var(--primary-dark);
-    color: var(--accent-gold);
-    text-align:center;
-    padding:20px;
-}
-
-/* Font Controls */
-.font-controls {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-}
-
-.font-controls button {
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:none;
-    background:var(--primary-dark);
-    color:var(--accent-gold);
-    margin:5px;
-    cursor:pointer;
-}
+body {font-family:Cairo;background:#f9f7f2;margin:0}
+header{background:#1b3022;color:#c5a059;padding:15px;position:sticky;top:0;z-index:999}
+.container{width:90%;margin:auto}
+.hero{height:300px;display:flex;align-items:center;justify-content:center;color:white;position:relative}
+.hero img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:.3}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:white;padding:20px;border-radius:10px;border-bottom:4px solid #c5a059}
+button{background:#1b3022;color:white;border:none;padding:5px 10px}
 </style>
 </head>
 
@@ -175,11 +24,7 @@ footer {
 
 <header>
 <div class="container">
-<h1 class="logo">أذكار المسلم</h1>
-<div>
-<button class="nav-btn" onclick="scrollToSection('morning')">الصباح</button>
-<button class="nav-btn" onclick="scrollToSection('evening')">المساء</button>
-</div>
+<h2>أذكار المسلم</h2>
 </div>
 </header>
 
@@ -190,146 +35,61 @@ footer {
 
 <main class="container">
 
-<!-- Morning -->
-<section id="morning" class="dhikr-section">
-<div class="section-title"><h3>أذكار الصباح</h3></div>
+<h3>أذكار الصباح</h3>
+<div id="morning" class="grid"></div>
 
-<div class="dhikr-grid">
-
-<div class="dhikr-card">
-<p class="dhikr-text">أصبحنا وأصبح الملك لله...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 1</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-<div class="dhikr-card">
-<p class="dhikr-text">اللهم بك أصبحنا وبك أمسينا...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 1</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-<div class="dhikr-card">
-<p class="dhikr-text">رضيت بالله ربًا...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 3</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-<div class="dhikr-card">
-<p class="dhikr-text">حسبي الله لا إله إلا هو...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 7</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- Evening -->
-<section id="evening" class="dhikr-section">
-<div class="section-title"><h3>أذكار المساء</h3></div>
-
-<div class="dhikr-grid">
-
-<div class="dhikr-card">
-<p class="dhikr-text">أمسينا وأمسى الملك لله...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 1</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-<div class="dhikr-card">
-<p class="dhikr-text">اللهم بك أمسينا وبك أصبحنا...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 1</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-<div class="dhikr-card">
-<p class="dhikr-text">أعوذ بكلمات الله التامات...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 3</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-<div class="dhikr-card">
-<p class="dhikr-text">اللهم إني أمسيت أشهدك...</p>
-<div class="card-footer">
-<span class="repeat-count">العدد: 4</span>
-<button class="count-btn" onclick="decrementCount(this)">تسبيح</button>
-</div>
-</div>
-
-</div>
-</section>
+<h3>أذكار المساء</h3>
+<div id="evening" class="grid"></div>
 
 </main>
 
-<footer>
-<p>جميع الأذكار من حصن المسلم</p>
-</footer>
-
-<div class="font-controls">
-<button onclick="changeFontSize(1)">+</button>
-<button onclick="changeFontSize(-1)">-</button>
-</div>
-
 <script>
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
 
-function decrementCount(btn){
-    let span = btn.parentElement.querySelector('.repeat-count');
-    let num = parseInt(span.innerText.replace('العدد: ',''));
+/* تحميل JSON */
+fetch('adhkar.json')
+.then(res => res.json())
+.then(data => {
 
-    if(num>0){
-        num--;
-        span.innerText = 'العدد: '+num;
-    }
+render("morning", data.morning);
+render("evening", data.evening);
 
-    if(num===0){
-        btn.innerText='تم ✓';
-        btn.style.background='green';
-        btn.disabled=true;
-    }
-}
-
-let size=1.2;
-function changeFontSize(d){
-    size+=d*0.1;
-    size=Math.max(1,Math.min(2,size));
-
-    document.querySelectorAll('.dhikr-text').forEach(e=>{
-        e.style.fontSize=size+'rem';
-    });
-}
-
-// animation
-const observer=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-        if(e.isIntersecting){
-            e.target.style.opacity=1;
-            e.target.style.transform='translateY(0)';
-        }
-    });
 });
 
-document.querySelectorAll('.dhikr-card').forEach(c=>{
-    c.style.opacity=0;
-    c.style.transform='translateY(30px)';
-    c.style.transition='0.5s';
-    observer.observe(c);
+function render(id, list){
+const container = document.getElementById(id);
+
+list.forEach(item => {
+const card = document.createElement("div");
+card.className="card";
+
+card.innerHTML = `
+<p>${item.text}</p>
+<div>
+<span>${item.count}</span>
+<button onclick="count(this)">تسبيح</button>
+</div>
+`;
+
+container.appendChild(card);
 });
+}
+
+/* العداد */
+function count(btn){
+let span = btn.previousElementSibling;
+let n = parseInt(span.innerText);
+
+if(n>0){
+n--;
+span.innerText=n;
+}
+
+if(n===0){
+btn.innerText="تم ✓";
+btn.disabled=true;
+}
+}
+
 </script>
 
 </body>
