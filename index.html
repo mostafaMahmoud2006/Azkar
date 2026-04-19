@@ -6,6 +6,210 @@
     <title>أذكار الصباح والمساء - تصميم إسلامي فخم</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* الألوان الأساسية */
+:root {
+    --primary-dark: #1b3022; /* أخضر داكن إسلامي */
+    --accent-gold: #c5a059;  /* ذهبي هادئ */
+    --bg-beige: #f9f7f2;    /* بيج ناعم للخلفية */
+    --text-main: #333;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-beige);
+    color: var(--text-main);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-dark);
+    color: var(--accent-gold);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Cairo', sans-serif;
+}
+
+.nav-btn:hover {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.image-placeholder {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #2c3e50; /* لون مؤقت */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+    border: 2px dashed var(--accent-gold);
+}
+
+.hero-overlay h2 {
+    position: relative;
+    font-family: 'Amiri', serif;
+    font-size: 2.5rem;
+    z-index: 1;
+}
+
+/* Dhikr Cards */
+.dhikr-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.section-title h3 {
+    font-family: 'Amiri', serif;
+    font-size: 2.2rem;
+    color: var(--primary-dark);
+    margin: 0 15px;
+}
+
+.ornament {
+    height: 2px;
+    width: 50px;
+    background: var(--accent-gold);
+}
+
+.dhikr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.dhikr-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    border-bottom: 4px solid var(--accent-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.dhikr-card:hover {
+    transform: translateY(-5px);
+}
+
+.dhikr-text {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.count-btn {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    border: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Font Controls */
+.font-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.font-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-dark);
+    color: var(--accent-gold);
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--primary-dark);
+    color: var(--accent-gold);
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-overlay h2 { font-size: 1.8rem; }
+    .logo { font-size: 1.4rem; }
+}
+
+    </style>
 </head>
 <body>
 
@@ -87,6 +291,63 @@
         <button onclick="changeFontSize(-1)" title="تصغير الخط">-button>
     </div>
 
-    <script src="script.js"></script>
+    <script>// التمرير السلس للأقسام
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+// وظيفة التسبيح (تقليل العدد عند الضغط)
+function decrementCount(button) {
+    const countSpan = button.parentElement.querySelector('.repeat-count');
+    let currentCount = parseInt(countSpan.innerText.replace('العدد: ', ''));
+    
+    if (currentCount > 0) {
+        currentCount--;
+        countSpan.innerText = `العدد: ${currentCount}`;
+    }
+    
+    if (currentCount === 0) {
+        button.style.backgroundColor = '#ccc';
+        button.innerText = 'تم';
+        button.disabled = true;
+    }
+}
+
+// التحكم في حجم الخط
+let currentFontSize = 1.2;
+function changeFontSize(delta) {
+    const texts = document.querySelectorAll('.dhikr-text');
+    currentFontSize += delta * 0.1;
+    
+    // وضع حدود لحجم الخط
+    if (currentFontSize < 1) currentFontSize = 1;
+    if (currentFontSize > 2) currentFontSize = 2;
+
+    texts.forEach(text => {
+        text.style.fontSize = currentFontSize + 'rem';
+    });
+}
+
+// إضافة تأثير ظهور ناعم عند التمرير (Simple Fade-in)
+window.addEventListener('scroll', () => {
+    const cards = document.querySelectorAll('.dhikr-card');
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+// تهيئة أولية للبطاقات (للتأثير الحركي)
+document.querySelectorAll('.dhikr-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease-out';
+});
+</script>
 </body>
 </html>
