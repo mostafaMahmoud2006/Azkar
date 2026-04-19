@@ -1,93 +1,345 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أذكار المسلم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* المتغيرات اللونية للتصميم الإسلامي */
+        :root {
+            --primary-dark: #15271b; /* أخضر إسلامي عميق */
+            --primary-light: #1f3a28;
+            --gold: #c5a059; /* لون ذهبي للزخارف */
+            --bg-color: #fcfbf8; /* لون مريح للعين */
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #666;
+        }
 
-<title>أذكار المسلم</title>
+        /* الإعدادات الأساسية */
+        html {
+            scroll-behavior: smooth; /* تمرير سلس بين الأقسام */
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-color);
+            margin: 0;
+            color: var(--text-dark);
+            line-height: 1.8;
+            background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+            background-size: 30px 30px; /* نقوش خلفية خفيفة جداً */
+            background-color: var(--bg-color);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+        /* الهيدر وشريط التنقل */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--gold);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom: 2px solid var(--gold);
+        }
 
-<style>
-body {font-family:Cairo;background:#f9f7f2;margin:0}
-header{background:#1b3022;color:#c5a059;padding:15px;position:sticky;top:0;z-index:999}
-.container{width:90%;margin:auto}
-.hero{height:300px;display:flex;align-items:center;justify-content:center;color:white;position:relative}
-.hero img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:.3}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.card{background:white;padding:20px;border-radius:10px;border-bottom:4px solid #c5a059}
-button{background:#1b3022;color:white;border:none;padding:5px 10px}
-</style>
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-content h2 {
+            margin: 0;
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--card-bg);
+            border: 1px solid var(--gold);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--gold);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* العناوين والأقسام */
+        .section-header {
+            text-align: center;
+            margin: 50px 0 30px;
+            position: relative;
+        }
+
+        .section-header h3 {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin: 0;
+            display: inline-block;
+            padding: 0 20px;
+            background: var(--bg-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* شبكة البطاقات */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        /* تصميم بطاقة الذكر */
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            
+            /* إعدادات الأنيميشن للظهور */
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* زخرفة إسلامية بسيطة داخل البطاقة */
+        .card::before {
+            content: "✦";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.1;
+            font-family: 'Amiri', serif;
+        }
+
+        .card p {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        /* أسفل البطاقة (العداد والزر) */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .count-badge {
+            background: rgba(197, 160, 89, 0.15);
+            color: var(--primary-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .count-badge::before {
+            content: "التكرار:";
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: var(--text-gray);
+        }
+
+        .tasbeeh-btn {
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tasbeeh-btn:hover {
+            background: var(--primary-light);
+            transform: scale(1.05);
+        }
+
+        .tasbeeh-btn:disabled {
+            background: #27ae60; /* لون أخضر دلالة على الإنجاز */
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        /* أنيميشن الدخول */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section-header h3 {
+                font-size: 1.8rem;
+            }
+            .card p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="container">
-<h2>أذكار المسلم</h2>
-</div>
-</header>
+    <header>
+        <div class="container header-content">
+            <h2>أذكار المسلم</h2>
+            <nav>
+                <button class="nav-btn" onclick="document.getElementById('morning-section').scrollIntoView({behavior: 'smooth'})">أذكار الصباح</button>
+                <button class="nav-btn" onclick="document.getElementById('evening-section').scrollIntoView({behavior: 'smooth'})">أذكار المساء</button>
+            </nav>
+        </div>
+    </header>
 
+    <main class="container">
+        
+        <section id="morning-section">
+            <div class="section-header">
+                <h3>أذكار الصباح</h3>
+            </div>
+            <div id="morning" class="grid"></div>
+        </section>
 
+        <section id="evening-section">
+            <div class="section-header">
+                <h3>أذكار المساء</h3>
+            </div>
+            <div id="evening" class="grid"></div>
+        </section>
 
-<main class="container">
+    </main>
 
-<h3>أذكار الصباح</h3>
-<div id="morning" class="grid"></div>
+    <script>
+        /* تحميل JSON وتمريره لدالة البناء */
+        fetch('adhkar.json')
+            .then(res => res.json())
+            .then(data => {
+                // التأكد من وجود البيانات قبل بنائها
+                if(data.morning) render("morning", data.morning);
+                if(data.evening) render("evening", data.evening);
+            })
+            .catch(err => console.error("حدث خطأ في تحميل الأذكار:", err));
 
-<h3>أذكار المساء</h3>
-<div id="evening" class="grid"></div>
+        /* دالة بناء البطاقات */
+        function render(id, list) {
+            const container = document.getElementById(id);
+            
+            list.forEach((item, index) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                
+                // إضافة تأخير زمني متدرج لكل بطاقة لتعطي تأثير ظهور متتالي (Staggered Animation)
+                card.style.animationDelay = `${index * 0.1}s`;
 
-</main>
+                card.innerHTML = `
+                    <p>${item.text}</p>
+                    <div class="card-footer">
+                        <span class="count-badge">${item.count}</span>
+                        <button class="tasbeeh-btn" onclick="count(this)">سبّح</button>
+                    </div>
+                `;
 
-<script>
+                container.appendChild(card);
+            });
+        }
 
-/* تحميل JSON */
-fetch('adhkar.json')
-.then(res => res.json())
-.then(data => {
+        /* دالة العداد والتسبيح */
+        function count(btn) {
+            // الوصول إلى عنصر الرقم المجاور للزر
+            let span = btn.previousElementSibling;
+            
+            // استخراج الرقم فقط (لأننا أضفنا كلمة "التكرار:" عبر الـ CSS)
+            let n = parseInt(span.innerText);
 
-render("morning", data.morning);
-render("evening", data.evening);
+            if (n > 0) {
+                n--;
+                span.innerText = n;
+                
+                // إضافة تأثير بصري صغير عند الضغط
+                btn.style.transform = "scale(0.95)";
+                setTimeout(() => btn.style.transform = "scale(1)", 100);
+            }
 
-});
-
-function render(id, list){
-const container = document.getElementById(id);
-
-list.forEach(item => {
-const card = document.createElement("div");
-card.className="card";
-
-card.innerHTML = `
-<p>${item.text}</p>
-<div>
-<span>${item.count}</span>
-<button onclick="count(this)">تسبيح</button>
-</div>
-`;
-
-container.appendChild(card);
-});
-}
-
-/* العداد */
-function count(btn){
-let span = btn.previousElementSibling;
-let n = parseInt(span.innerText);
-
-if(n>0){
-n--;
-span.innerText=n;
-}
-
-if(n===0){
-btn.innerText="تم ✓";
-btn.disabled=true;
-}
-}
-
-</script>
+            if (n === 0) {
+                btn.innerText = "تم ✓";
+                btn.disabled = true;
+            }
+        }
+    </script>
 
 </body>
 </html>
